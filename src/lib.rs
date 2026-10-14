@@ -112,9 +112,16 @@ impl Vault {
             return Err(GatewayError::InvalidVaultEntry);
         }
 
-        if self.by_clear_value.iter().any(|(existing_clear, existing_token)| {
-            existing_token == token && existing_clear != clear_value
-        }) || self.by_clear_value.get(clear_value).is_some_and(|previous| previous != token)
+        if self
+            .by_clear_value
+            .iter()
+            .any(|(existing_clear, existing_token)| {
+                existing_token == token && existing_clear != clear_value
+            })
+            || self
+                .by_clear_value
+                .get(clear_value)
+                .is_some_and(|previous| previous != token)
         {
             return Err(GatewayError::ConflictingVaultEntry);
         }
