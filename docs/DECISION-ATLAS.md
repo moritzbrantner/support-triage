@@ -57,6 +57,14 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14.  
   Jira versus Azure DevOps, exact permitted SQL views and logs, deployment constraints and real workflow acceptance remain unselected.
 
+- **2.8 [ ] Decision — Azure DevOps is the first ticket source.**  
+  Status: adopted by owner 2026-10-14; Answers 2.4 (ticket-source selection).  
+  The first real TicketSource adapter targets Azure DevOps work items and their discussion history, using project-specific configuration and the trusted gateway. Keep Jira and other systems as future interchangeable adapters. This is a source selection only, not approval to access real work items or to write back to Azure DevOps; the initial investigation demonstration remains synthetic.
+
+- **2.9 [ ] Question — What customer environment should the first Azure DevOps integration target?**  
+  Status: open since 2026-10-14; remaining environment aspect of 2.4, not a blocker for synthetic demonstration.  
+  Identify the Azure DevOps organization/project, authorized data/log sources, and reliable tenant/environment resolution fields before a real-customer adapter or deployment is scoped.
+
 - **2.5 [ ] Question — What are the externally testable privacy/security claims?**  
   Status: open since 2026-10-14.  
   Dictionary/NER scanning misses unknown identities and contextual re-identification. Define residual-risk expectations, evaluation corpus, audit retention and breach handling before claims of safe disclosure.
