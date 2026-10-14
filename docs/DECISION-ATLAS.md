@@ -118,3 +118,7 @@ This is owner product intent, not implementation documentation. Only choices ref
 - **5.3 [ ] Question — Should marked tickets be investigated again after changes?**  
   Status: open since 2026-10-14; follows Decision 5.2.  
   After a marked ticket has been investigated, should new comments or materially changed fields automatically trigger a fresh investigation while the marker remains present, or require an explicit retriage action? The first choice keeps diagnoses current but increases processing, and the second makes reruns deliberate but may leave stale drafts. In both cases, guard against duplicate event delivery and prevent an outdated assessment from being approved for the wrong ticket revision.
+
+- **5.4 [ ] Decision — Automatically reinvestigate marked tickets after relevant changes.**  
+  Status: adopted by owner 2026-10-14; Answers 5.3.  
+  While a work item retains its explicitly configured triage marker within authorized scope, new comments or materially changed case information automatically initiate a fresh investigation. Unchanged, irrelevant, or repeatedly delivered events must not create duplicate investigations. Tie findings and review drafts to the source revision: if the ticket changes after assessment, an earlier draft is stale and cannot be approved or posted as current without renewed review of an up-to-date assessment. All reruns pass through the same tenant authorization, privacy gateway, and bounded investigation controls.
