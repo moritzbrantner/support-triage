@@ -45,6 +45,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14.  
   The draft requires human review for ticket text yet also describes fully automatic triage. Define explicit categories of releasable, withheld and manually reviewed inputs before enabling real data.
 
+- **2.7 [ ] Decision — Automatic policy-gated release of ticket free text.**  
+  Status: adopted by owner 2026-10-14; Answers 2.2.  
+  Ticket descriptions and comments may reach the hosted investigator automatically only when a trusted, validated release policy explicitly approves the transformed content. Uncertain, unsupported, or rejected material must be withheld from the model and flagged for human review rather than silently released. This removes routine per-ticket review for approved material; it does not establish anonymization, select the policy's detection thresholds, or authorize processing real customer data before the gateway and deployment safeguards are validated.
+
 - **2.3 [ ] Question — How stable should pseudonyms be?**  
   Status: open since 2026-10-14.  
   Case-scoped mappings reduce linkability; tenant-stable mappings ease cross-case analysis but need retention, deletion and collision policies.
