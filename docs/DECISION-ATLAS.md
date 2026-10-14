@@ -110,3 +110,7 @@ This is owner product intent, not implementation documentation. Only choices ref
 - **5.1 [ ] Question — What starts unattended investigation?**  
   Status: open since 2026-10-14; not a blocker for the synthetic demonstration.  
   In the first operational Azure DevOps integration, should unattended investigations start only for work items explicitly tagged/marked for triage, or for every new work item in a designated, authorized support queue? This determines workload, cost and exposure of ticket contents to gateway processing. Each project profile may configure its permitted source scope, and all investigations retain the same privacy boundary.
+
+- **5.2 [ ] Decision — Require an explicit triage marker to start unattended investigation.**  
+  Status: adopted by owner 2026-10-14; Answers 5.1.  
+  In the initial Azure DevOps integration, automatically investigate only work items deliberately marked for triage (for example an `auto-triage` tag or a project-configured equivalent field) within an authorized project scope. New or updated work items without that marker do not start unattended investigations. The marker selects candidates; it does not bypass tenant authorization, privacy-gateway approval or other safety checks. The synthetic demonstration must not connect to a real Azure DevOps project.
