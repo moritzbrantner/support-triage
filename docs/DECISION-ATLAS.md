@@ -104,3 +104,9 @@ This is owner product intent, not implementation documentation. Only choices ref
 - **4.4 [ ] Decision — Keep internal assessments in Support Triage for broadly visible work items.**  
   Status: adopted by owner 2026-10-14; Answers 4.3.  
   If the Azure DevOps work item is visible outside the authorized support audience, keep its internal assessment and reviewed comment draft within an access-controlled Support Triage workspace; never publish the internal diagnosis to that work item or create a separate restricted Azure DevOps work item as a workaround. Explicit human approval alone does not override the audience boundary. Decision 4.2 still permits approved posting when target access has been independently verified as appropriately restricted; absent or uncertain verification, keep the draft private.
+
+## 5. Investigation initiation
+
+- **5.1 [ ] Question — What starts unattended investigation?**  
+  Status: open since 2026-10-14; not a blocker for the synthetic demonstration.  
+  In the first operational Azure DevOps integration, should unattended investigations start only for work items explicitly tagged/marked for triage, or for every new work item in a designated, authorized support queue? This determines workload, cost and exposure of ticket contents to gateway processing. Each project profile may configure its permitted source scope, and all investigations retain the same privacy boundary.
