@@ -85,6 +85,14 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14; not a blocker for the synthetic demonstration.  
   For the first real-data deployment with a hosted AI model (Decision 2.6), should credentials, raw ticket/database/log data, pseudonym vault and policy gateway operate inside the customer's infrastructure, or in a managed Support Triage service permitted to access that raw data? This decides operational ownership and the external data-custody boundary; neither option relaxes gateway checks or authorizes production-data access by itself.
 
+- **2.14 [ ] Decision — Customer-hosted trusted gateway and data custody.**  
+  Status: adopted by owner 2026-10-14; Answers 2.13.  
+  For the first real deployment, operate the trusted gateway/clear zone within the customer's infrastructure. Raw ticket, database and log evidence, credentials, tenant authorization, reversible pseudonym vault, re-identification and customer-side audit remain in that controlled environment; do not give a centrally managed Support Triage service custody of these values. The external hosted model (Decision 2.6) may receive only information explicitly approved by the gateway's validated release policy, including follow-up tool results. This fixes the trusted-zone location, not the investigator runtime placement, and does not by itself authorize production-data processing or establish a no-leak guarantee.
+
+- **2.15 [ ] Question — Where should the investigator process run when the gateway is customer-hosted?**  
+  Status: open since 2026-10-14; follows Decisions 2.6 and 2.14, not a blocker for the synthetic demonstration.  
+  Should the constrained agent/investigator runtime run alongside the trusted gateway inside the customer's infrastructure and call the external model API from there, or run in a managed Support Triage environment with tightly mediated access to the customer-hosted gateway? The model remains hosted in either design. This determines operational burden and whether another externally operated runtime ever handles gateway-approved evidence.
+
 ## 3. Future expansion
 
 - **3.1 [ ] Question — When should external reusable engines be adopted?**  
