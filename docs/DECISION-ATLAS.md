@@ -53,6 +53,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14; elaborates the unapproved portion of Decision 2.7.  
   For a ticket with both gateway-approved evidence and text withheld pending human review, should the investigator continue with the approved evidence and explicitly report missing information, or pause the investigation until a human reviews the withheld material? In either case, withheld content never reaches the hosted model without separate approval.
 
+- **2.12 [ ] Decision — Continue investigations with approved partial evidence.**  
+  Status: adopted by owner 2026-10-14; Answers 2.11.  
+  When some ticket evidence is withheld for privacy review, continue the investigation with the independently approved information rather than pausing for approval. Report the withheld or unavailable evidence without revealing its contents, distinguish facts from hypotheses, and mark conclusions uncertain or unclear when the available evidence is insufficient. Withheld content never reaches the hosted investigator without separate approval; human review of that content remains possible.
+
 - **2.3 [ ] Question — How stable should pseudonyms be?**  
   Status: open since 2026-10-14.  
   Case-scoped mappings reduce linkability; tenant-stable mappings ease cross-case analysis but need retention, deletion and collision policies.
