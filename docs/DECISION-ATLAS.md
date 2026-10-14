@@ -86,3 +86,9 @@ This is owner product intent, not implementation documentation. Only choices ref
 - **3.1 [ ] Question — When should external reusable engines be adopted?**  
   Status: open since 2026-10-14, not an MVP blocker.  
   Reuse NLP Stack detection, Search Engine similarity, Media Intelligence evidence composition and optional Workflow Editor authoring only when a specific vertical slice proves necessary. The application owns tenant policy and support-case lifecycle.
+
+## 4. Assessment delivery
+
+- **4.1 [ ] Question — Default delivery of completed support assessments?**  
+  Status: open since 2026-10-14; relevant after Azure DevOps source selection and evidence-backed reporting.  
+  After an assessment passes trusted output checks, should Support Triage keep it in a private review workspace, automatically post an internal Azure DevOps comment, or prepare an internal comment draft requiring explicit approval? The choice concerns report delivery, not execution of suggested scripts. No report may bypass tenant permissions, the trusted output boundary or privacy safeguards. The first synthetic demonstration still requires human review.
