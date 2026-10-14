@@ -53,6 +53,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14.  
   Case-scoped mappings reduce linkability; tenant-stable mappings ease cross-case analysis but need retention, deletion and collision policies.
 
+- **2.10 [ ] Decision — Tenant-stable pseudonyms across cases.**  
+  Status: adopted by owner 2026-10-14; Answers 2.3.  
+  Within each tenant, the same identified person or other mapped entity keeps the same typed placeholder across separate support cases to support correlation. The trusted vault owns the mappings; identities and mappings must be isolated between tenants, without exposing raw values, lookup authority, or the vault to the hosted investigator. Stable pseudonyms remain personal-data risk rather than anonymization. Retention, rotation, deletion and tenant offboarding policies still require qualification before real-data use.
+
 - **2.4 [ ] Question — Which ticket source and customer environment should the first real adapter serve?**  
   Status: open since 2026-10-14.  
   Jira versus Azure DevOps, exact permitted SQL views and logs, deployment constraints and real workflow acceptance remain unselected.
