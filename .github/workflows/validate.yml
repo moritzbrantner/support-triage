@@ -1,0 +1,16 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    uses: moritzbrantner/reusable-workflows/.github/workflows/command-validation.yml@15e2a80f13e16d29e432ab761891b5d520622360
+    with:
+      setup_command: rustup component add rustfmt clippy
+      command: cargo fmt --all -- --check && cargo clippy --all-targets -- -D warnings && cargo test --locked && cargo run --locked --example synthetic_case
