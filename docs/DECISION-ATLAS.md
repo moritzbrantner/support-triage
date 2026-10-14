@@ -100,3 +100,7 @@ This is owner product intent, not implementation documentation. Only choices ref
 - **4.3 [ ] Question — How should internal-only delivery work if the Azure DevOps work item is visible beyond support staff?**  
   Status: open since 2026-10-14; related to Decision 4.2, not a blocker for the synthetic demonstration.  
   The documented Azure DevOps work-item comment API has no per-comment internal/private visibility option. Should the reviewed draft remain inside Support Triage when the work item's audience is broader than intended, or be published to a separate access-restricted Azure DevOps work item? In either case, never disclose an internal draft to unintended recipients.
+
+- **4.4 [ ] Decision — Keep internal assessments in Support Triage for broadly visible work items.**  
+  Status: adopted by owner 2026-10-14; Answers 4.3.  
+  If the Azure DevOps work item is visible outside the authorized support audience, keep its internal assessment and reviewed comment draft within an access-controlled Support Triage workspace; never publish the internal diagnosis to that work item or create a separate restricted Azure DevOps work item as a workaround. Explicit human approval alone does not override the audience boundary. Decision 4.2 still permits approved posting when target access has been independently verified as appropriately restricted; absent or uncertain verification, keep the draft private.
