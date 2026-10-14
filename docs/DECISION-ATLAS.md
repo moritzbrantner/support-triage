@@ -37,6 +37,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14.  
   Local-only inference inside the customer's deployment, or a hosted model receiving only specifically approved pseudonymized evidence? The answer determines network isolation, costs and acceptable release policy.
 
+- **2.6 [ ] Decision — Hosted-model-first initial investigator.**  
+  Status: adopted by owner 2026-10-14; Answers 2.1.  
+  The first AI-backed investigator targets an external hosted model, not mandatory local inference. Only evidence explicitly approved for release by the trusted gateway may be sent to that provider, including follow-up tool results; credentials, raw customer values, and the vault remain in the trusted zone. This chooses the deployment direction, not a provider, production-data authorization, or a requirement for the synthetic-only demonstration to make real external calls. Local inference may be supported later.
+
 - **2.2 [ ] Question — What permits automatic release of free-text tickets?**  
   Status: open since 2026-10-14.  
   The draft requires human review for ticket text yet also describes fully automatic triage. Define explicit categories of releasable, withheld and manually reviewed inputs before enabling real data.
