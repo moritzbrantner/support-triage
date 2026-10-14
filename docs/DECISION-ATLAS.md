@@ -49,6 +49,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: adopted by owner 2026-10-14; Answers 2.2.  
   Ticket descriptions and comments may reach the hosted investigator automatically only when a trusted, validated release policy explicitly approves the transformed content. Uncertain, unsupported, or rejected material must be withheld from the model and flagged for human review rather than silently released. This removes routine per-ticket review for approved material; it does not establish anonymization, select the policy's detection thresholds, or authorize processing real customer data before the gateway and deployment safeguards are validated.
 
+- **2.11 [ ] Question — Continue or pause an investigation when some evidence is withheld?**  
+  Status: open since 2026-10-14; elaborates the unapproved portion of Decision 2.7.  
+  For a ticket with both gateway-approved evidence and text withheld pending human review, should the investigator continue with the approved evidence and explicitly report missing information, or pause the investigation until a human reviews the withheld material? In either case, withheld content never reaches the hosted model without separate approval.
+
 - **2.3 [ ] Question — How stable should pseudonyms be?**  
   Status: open since 2026-10-14.  
   Case-scoped mappings reduce linkability; tenant-stable mappings ease cross-case analysis but need retention, deletion and collision policies.
