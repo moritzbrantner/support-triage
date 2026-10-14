@@ -114,3 +114,7 @@ This is owner product intent, not implementation documentation. Only choices ref
 - **5.2 [ ] Decision — Require an explicit triage marker to start unattended investigation.**  
   Status: adopted by owner 2026-10-14; Answers 5.1.  
   In the initial Azure DevOps integration, automatically investigate only work items deliberately marked for triage (for example an `auto-triage` tag or a project-configured equivalent field) within an authorized project scope. New or updated work items without that marker do not start unattended investigations. The marker selects candidates; it does not bypass tenant authorization, privacy-gateway approval or other safety checks. The synthetic demonstration must not connect to a real Azure DevOps project.
+
+- **5.3 [ ] Question — Should marked tickets be investigated again after changes?**  
+  Status: open since 2026-10-14; follows Decision 5.2.  
+  After a marked ticket has been investigated, should new comments or materially changed fields automatically trigger a fresh investigation while the marker remains present, or require an explicit retriage action? The first choice keeps diagnoses current but increases processing, and the second makes reruns deliberate but may leave stale drafts. In both cases, guard against duplicate event delivery and prevent an outdated assessment from being approved for the wrong ticket revision.
