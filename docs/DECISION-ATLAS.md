@@ -81,6 +81,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14.  
   Dictionary/NER scanning misses unknown identities and contextual re-identification. Define residual-risk expectations, evaluation corpus, audit retention and breach handling before claims of safe disclosure.
 
+- **2.13 [ ] Question — Where should the first trusted gateway run?**  
+  Status: open since 2026-10-14; not a blocker for the synthetic demonstration.  
+  For the first real-data deployment with a hosted AI model (Decision 2.6), should credentials, raw ticket/database/log data, pseudonym vault and policy gateway operate inside the customer's infrastructure, or in a managed Support Triage service permitted to access that raw data? This decides operational ownership and the external data-custody boundary; neither option relaxes gateway checks or authorizes production-data access by itself.
+
 ## 3. Future expansion
 
 - **3.1 [ ] Question — When should external reusable engines be adopted?**  
