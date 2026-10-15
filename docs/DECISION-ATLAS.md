@@ -93,6 +93,14 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-14; follows Decisions 2.6 and 2.14, not a blocker for the synthetic demonstration.  
   Should the constrained agent/investigator runtime run alongside the trusted gateway inside the customer's infrastructure and call the external model API from there, or run in a managed Support Triage environment with tightly mediated access to the customer-hosted gateway? The model remains hosted in either design. This determines operational burden and whether another externally operated runtime ever handles gateway-approved evidence.
 
+- **2.16 [ ] Decision — Customer-hosted isolated investigator with external model inference.**  
+  Status: adopted by owner 2026-10-15; Answers 2.15.  
+  The constrained agent/investigator process runs inside the customer's infrastructure alongside, but isolated from, the customer-hosted trusted gateway (Decision 2.14). It obtains case evidence and follow-up tool results only through that gateway, with no direct access to raw customer data, source credentials or the pseudonym vault. The investigator calls an external hosted AI model (Decision 2.6) with only gateway-approved transformed content. There is no centrally managed Support Triage agent runtime receiving case evidence. This settles runtime placement, not model provider/account ownership, production deployment hardening or authorization to process real customer data.
+
+- **2.17 [ ] Question — Who owns hosted-model API access and billing?**  
+  Status: open since 2026-10-15; follows Decisions 2.6, 2.14 and 2.16; not a blocker for the synthetic demonstration.  
+  Should each customer configure their own hosted-model provider account/API key and pay the provider directly, or should Support Triage provide centrally managed model access/billing while keeping the trusted gateway and investigator process customer-hosted? Both paths still send only policy-approved data to the hosted provider, but differ in onboarding, billing, operational responsibility and another potential processing intermediary.
+
 ## 3. Future expansion
 
 - **3.1 [ ] Question — When should external reusable engines be adopted?**  
