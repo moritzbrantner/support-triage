@@ -229,7 +229,10 @@ impl EntityKind {
         token
             .strip_prefix(self.prefix())
             .and_then(|rest| rest.strip_prefix('_'))
-            .is_some_and(|n| !n.is_empty() && n.bytes().all(|b| b.is_ascii_digit()))
+            // Numbering starts at 1 and is canonical: no zero or zero-padded suffixes.
+            .is_some_and(|n| {
+                !n.is_empty() && !n.starts_with('0') && n.bytes().all(|b| b.is_ascii_digit())
+            })
     }
 }
 
@@ -286,7 +289,13 @@ impl TenantVaults {
             }
             return Ok(existing.clone());
         }
-        let used: BTreeSet<&String> = vault.by_clear_value.values().collect();
+        // A placeholder may equal neither an existing token nor a mapped clear value, so a
+        // generated token can never be another entity's clear text.
+        let used: BTreeSet<&String> = vault
+            .by_clear_value
+            .values()
+            .chain(vault.by_clear_value.keys())
+            .collect();
         let token = (1u64..)
             .map(|n| format!("{}_{n}", kind.prefix()))
             .find(|candidate| !used.contains(candidate))
