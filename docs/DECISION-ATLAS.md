@@ -31,6 +31,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: adopted as product direction from initial owner draft, 2026-10-14.  
   Ticket sources, evidence providers, extraction, detection and delivery vary by project through adapters/profiles; trusted gateway, investigator lifecycle, release controls and audit remain shared application behavior.
 
+- **1.6 [ ] Question — Should the investigator search earlier support cases automatically?**  
+  Status: open since 2026-10-15; follows tenant-stable pseudonyms (Decision 2.10), not a blocker for the synthetic demonstration.  
+  For a marked technical-support ticket, should the investigator proactively retrieve potentially related, earlier resolved cases within the **same tenant** through the privacy gateway, or use only the current ticket and its explicitly linked evidence unless an operator authorizes historical lookup? Historical case access would require tenant-scoped authorization, approved evidence transformations and traceable citations; stable pseudonyms alone do not grant access to past tickets.
+
 ## 2. Safety and trust questions
 
 - **2.1 [ ] Question — Which model deployment is the initial target?**  
