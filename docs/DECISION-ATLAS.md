@@ -35,6 +35,14 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-15; follows tenant-stable pseudonyms (Decision 2.10), not a blocker for the synthetic demonstration.  
   For a marked technical-support ticket, should the investigator proactively retrieve potentially related, earlier resolved cases within the **same tenant** through the privacy gateway, or use only the current ticket and its explicitly linked evidence unless an operator authorizes historical lookup? Historical case access would require tenant-scoped authorization, approved evidence transformations and traceable citations; stable pseudonyms alone do not grant access to past tickets.
 
+- **1.7 [ ] Decision — Automatically retrieve relevant prior resolved cases within the same tenant.**  
+  Status: adopted by owner 2026-10-15; Answers 1.6.  
+  During an authorized support investigation, proactively search for potentially relevant earlier resolved support cases within the same tenant, without requiring a separate operator-triggered historical lookup. Every candidate and retrieved passage must independently pass case-access authorization and the trusted privacy gateway before the investigator or hosted model sees it. Cite the source case and supporting evidence; treat previous diagnoses or resolutions as historical claims, not verified facts, and distinguish absence of accessible matches from proof no prior incident exists. Never search or disclose cases across tenants. Tenant-stable pseudonyms can aid correlation but do not grant historical access.
+
+- **1.8 [ ] Question — How broadly should the automatic historical-case search range?**  
+  Status: open since 2026-10-15; follows Decision 1.7, not a blocker for the first synthetic investigation.  
+  Should retrieval initially search only historical cases in the same authorized Azure DevOps project, or across all authorized projects belonging to that tenant? Both options remain tenant-isolated and permission-scoped; project-wide retrieval has a smaller audience/data surface, whereas tenant-wide retrieval can find recurring incidents spanning projects.
+
 ## 2. Safety and trust questions
 
 - **2.1 [ ] Question — Which model deployment is the initial target?**  
