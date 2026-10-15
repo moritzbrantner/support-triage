@@ -78,6 +78,7 @@ pub enum GatewayError {
     UnapprovedValue,
     UnmappedValue,
     KnownValueInEgress,
+    UnresolvedTenant,
 }
 
 impl fmt::Display for GatewayError {
@@ -89,6 +90,7 @@ impl fmt::Display for GatewayError {
             Self::UnapprovedValue => "field value not approved",
             Self::UnmappedValue => "field value not pre-seeded",
             Self::KnownValueInEgress => "known sensitive value found in output",
+            Self::UnresolvedTenant => "unresolved tenant",
         };
         f.write_str(message)
     }
@@ -187,6 +189,145 @@ impl Vault {
             fields,
             omitted_fields,
         })
+    }
+}
+
+/// Opaque synthetic tenant identifier. Resolution of real tenants is out of scope.
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct TenantId(String);
+
+impl TenantId {
+    pub fn new(id: &str) -> Result<Self, GatewayError> {
+        let id = id.trim();
+        if id.is_empty() {
+            return Err(GatewayError::UnresolvedTenant);
+        }
+        Ok(Self(id.to_owned()))
+    }
+
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+/// Kind of a mapped entity; determines the typed placeholder prefix.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum EntityKind {
+    Person,
+    Organization,
+}
+
+impl EntityKind {
+    fn prefix(self) -> &'static str {
+        match self {
+            Self::Person => "PERSON",
+            Self::Organization => "ORG",
+        }
+    }
+
+    fn owns(self, token: &str) -> bool {
+        token
+            .strip_prefix(self.prefix())
+            .and_then(|rest| rest.strip_prefix('_'))
+            // Numbering starts at 1 and is canonical: no zero or zero-padded suffixes.
+            .is_some_and(|n| {
+                !n.is_empty() && !n.starts_with('0') && n.bytes().all(|b| b.is_ascii_digit())
+            })
+    }
+}
+
+/// Trusted, tenant-isolated vaults (Atlas 2.10): each registered tenant has its own
+/// mapping namespace and placeholder numbering. Nothing here consults another
+/// tenant's mappings, so no tenant's results reveal another tenant's contents.
+#[derive(Default)]
+pub struct TenantVaults {
+    tenants: BTreeMap<TenantId, Vault>,
+}
+
+impl fmt::Debug for TenantVaults {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("TenantVaults")
+            .field("tenants", &self.tenants.len())
+            .finish_non_exhaustive()
+    }
+}
+
+impl TenantVaults {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn register(&mut self, tenant: &TenantId) -> Result<(), GatewayError> {
+        self.tenants.entry(tenant.clone()).or_default();
+        Ok(())
+    }
+
+    fn vault(&self, tenant: &TenantId) -> Result<&Vault, GatewayError> {
+        self.tenants
+            .get(tenant)
+            .ok_or(GatewayError::UnresolvedTenant)
+    }
+
+    fn vault_mut(&mut self, tenant: &TenantId) -> Result<&mut Vault, GatewayError> {
+        self.tenants
+            .get_mut(tenant)
+            .ok_or(GatewayError::UnresolvedTenant)
+    }
+
+    /// Returns the tenant's existing placeholder for `clear`, or allocates the
+    /// lowest-numbered unused `<PREFIX>_<n>` in that tenant. Deterministic.
+    pub fn assign(
+        &mut self,
+        tenant: &TenantId,
+        kind: EntityKind,
+        clear: &str,
+    ) -> Result<String, GatewayError> {
+        let vault = self.vault_mut(tenant)?;
+        if let Some(existing) = vault.by_clear_value.get(clear) {
+            if !kind.owns(existing) {
+                return Err(GatewayError::ConflictingVaultEntry);
+            }
+            return Ok(existing.clone());
+        }
+        // A placeholder may equal neither an existing token nor a mapped clear value, so a
+        // generated token can never be another entity's clear text.
+        let used: BTreeSet<&String> = vault
+            .by_clear_value
+            .values()
+            .chain(vault.by_clear_value.keys())
+            .collect();
+        let token = (1u64..)
+            .map(|n| format!("{}_{n}", kind.prefix()))
+            .find(|candidate| !used.contains(candidate))
+            .expect("an unused placeholder exists");
+        vault.insert(clear, &token)?;
+        Ok(token)
+    }
+
+    pub fn insert(
+        &mut self,
+        tenant: &TenantId,
+        clear: &str,
+        token: &str,
+    ) -> Result<(), GatewayError> {
+        self.vault_mut(tenant)?.insert(clear, token)
+    }
+
+    pub fn release(
+        &self,
+        tenant: &TenantId,
+        policy: &FieldPolicy,
+        clear_case: &ClearCase,
+    ) -> Result<AgentBundle, GatewayError> {
+        self.vault(tenant)?.release(policy, clear_case)
+    }
+
+    pub fn check_known_values(
+        &self,
+        tenant: &TenantId,
+        candidate: &str,
+    ) -> Result<(), GatewayError> {
+        self.vault(tenant)?.check_known_values(candidate)
     }
 }
 
