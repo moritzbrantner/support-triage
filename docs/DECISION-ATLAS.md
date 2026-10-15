@@ -101,6 +101,10 @@ This is owner product intent, not implementation documentation. Only choices ref
   Status: open since 2026-10-15; follows Decisions 2.6, 2.14 and 2.16; not a blocker for the synthetic demonstration.  
   Should each customer configure their own hosted-model provider account/API key and pay the provider directly, or should Support Triage provide centrally managed model access/billing while keeping the trusted gateway and investigator process customer-hosted? Both paths still send only policy-approved data to the hosted provider, but differ in onboarding, billing, operational responsibility and another potential processing intermediary.
 
+- **2.18 [ ] Decision — Customer-owned hosted-model account and billing.**  
+  Status: adopted by owner 2026-10-15; Answers 2.17.  
+  Each customer configures and pays for its own hosted AI model provider account and API access. Provider credentials are provisioned and protected within the customer's infrastructure and must not be exposed to Support Triage-managed services, model prompts, or investigator tool outputs. The isolated customer-hosted investigator uses that account for gateway-approved model requests. Support Triage does not proxy model traffic, bundle inference billing, or require centrally managed model accounts for the initial deployment. This does not choose a model provider, authorize live processing of customer tickets, or relax the privacy and egress checks.
+
 ## 3. Future expansion
 
 - **3.1 [ ] Question — When should external reusable engines be adopted?**  
